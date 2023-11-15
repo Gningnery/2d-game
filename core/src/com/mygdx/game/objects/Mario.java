@@ -27,15 +27,16 @@ public class Mario extends GameObject {
 
     // Gérer les collisions
     public int hits(Rectangle r){
+        if (bottom.overlaps(r)){
+            return 1;
+        }
         if (left.overlaps(r)){
             return 2;
         }
         if (right.overlaps(r)){
             return 3;
         }
-        if (bottom.overlaps(r)){
-            return 1;
-        }
+
         if (top.overlaps(r)){
             return 4;
         }

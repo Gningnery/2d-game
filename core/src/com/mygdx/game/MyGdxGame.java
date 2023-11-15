@@ -69,11 +69,21 @@ public class MyGdxGame extends ApplicationAdapter {
 			player.action(1,0,10);
 		}
 		for (GameObject t : list){
-			if (player.hits(t.getHitBox()) != -1){
-			player.action(1,0,t.getHitBox().y +t.getHitBox().height);
+			switch (player.hits(t.getHitBox())){
+				case 1:
+					player.action(1,0,t.getHitBox().y +t.getHitBox().height);
+					break;
+				case 2:
+					player.action(2,t.getHitBox().x + t.getHitBox().width+1,0);
+					break;
+				case 3:
+					player.action(3,t.getHitBox().x - player.getHitBox().width - 1,0);
+					break;
+				case 4:
+					player.action(4,0,t.getHitBox().y - player.getHitBox().height);
+					break;
 			}
 		}
-
 
 		//controls
 		if (Gdx.input.isKeyPressed((Input.Keys.SPACE))){
