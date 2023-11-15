@@ -15,7 +15,7 @@ public class Brick extends  GameObject{
 
 public  Brick (int x, int y){
     hitBox = new Rectangle(x ,y , 64 , 64);
-    texture = new Texture(Gdx.files.internal("sprite/block.png"));
+    texture = new Texture(Gdx.files.internal("sprite/block2.png"));
     sprite = new Sprite(texture,0,0,64, 64);
     setPosition(x ,y);
 
