@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,6 +16,7 @@ import com.mygdx.game.objects.Mario;
 import com.mygdx.game.objects.Spikes;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class MyGdxGame extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -37,16 +39,26 @@ public class MyGdxGame extends ApplicationAdapter {
 		player = new Mario();
 		player.setPosition(200,100);
 
-		list.add(new Brick(0,0));
-		list.add(new Brick(64,0));
-		list.add(new Brick(128,0));
-		list.add(new Brick(256,128));
-		list.add(new Brick(320,128));
-		list.add(new Brick(448,300));
-		list.add(new Brick(520,200));
-		list.add(new Brick(584,200));
-		list.add(new Spikes(320 ,194 ));
-		list.add(new Spikes(256 ,194 ));
+		FileHandle file = Gdx.files.internal("level1.txt");
+
+		try {
+			String fileContent = file.readString();
+			StringTokenizer tokens = new StringTokenizer(fileContent, " \t\n\r\f");
+
+			while (tokens.hasMoreTokens()) {
+				String type = tokens.nextToken();
+				int x = Integer.parseInt(tokens.nextToken());
+				int y = Integer.parseInt(tokens.nextToken());
+
+				if (type.equals("Block")) {
+					list.add(new Brick(x, y));
+				} else if (type.equals("Spike")) {
+					list.add(new Spikes(x, y));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 
 
