@@ -104,4 +104,9 @@ public class Mario extends GameObject {
     public Rectangle getHitBox() {
         return full;
     }
+
+    @Override
+    public int hitAction(int side) {
+        return 0;
+    }
 }

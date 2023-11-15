@@ -6,24 +6,21 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Brick extends  GameObject{
-
+public class Spikes extends  GameObject {
     Rectangle hitBox;
     Sprite sprite;
     Texture texture;
 
-
-public  Brick (int x, int y){
-    hitBox = new Rectangle(x ,y , 64 , 64);
-    texture = new Texture(Gdx.files.internal("sprite/block2.png"));
-    sprite = new Sprite(texture,0,0,64, 64);
-    setPosition(x ,y);
-
-}
+    public Spikes (int x, int y){
+       hitBox = new Rectangle(x , y , 64 , 40);
+       texture = new Texture(Gdx.files.internal("sprite/4_Conjoined_Spikes (1).png"));
+       sprite = new Sprite(texture , 0, 27, 64 , 40);
+       setPosition(x,y);
+    }
 
     @Override
     public int hits(Rectangle r) {
-        return 0;
+        return -1;
     }
 
     @Override
@@ -38,11 +35,9 @@ public  Brick (int x, int y){
 
     @Override
     public void setPosition(float x, float y) {
-
-    hitBox.x = x;
-    hitBox.y = y;
-    sprite.setPosition(x ,y);
-
+        hitBox.x = x;
+        hitBox.y = y;
+        sprite.setPosition(x , y);
 
     }
 
@@ -59,7 +54,6 @@ public  Brick (int x, int y){
     @Override
     public void draw(SpriteBatch batch) {
     sprite.draw(batch);
-
     }
 
     @Override
@@ -73,7 +67,9 @@ public  Brick (int x, int y){
     }
 
     @Override
-    public int hitAction(int side ) {
+    public int hitAction(int side) {
+        if (side == 1) return  2;
+
         return 1;
     }
 }

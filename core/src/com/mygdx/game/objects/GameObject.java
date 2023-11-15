@@ -13,5 +13,6 @@ public abstract class GameObject {
     public abstract void draw(SpriteBatch batch);
     public  abstract void jump();
     public abstract Rectangle getHitBox();
+    public abstract  int hitAction(int side);
 
 }

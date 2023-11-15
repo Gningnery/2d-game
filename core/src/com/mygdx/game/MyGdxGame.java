@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.objects.Brick;
 import com.mygdx.game.objects.GameObject;
 import com.mygdx.game.objects.Mario;
+import com.mygdx.game.objects.Spikes;
 
 import java.util.ArrayList;
 
@@ -41,6 +42,8 @@ public class MyGdxGame extends ApplicationAdapter {
 		list.add(new Brick(128,0));
 		list.add(new Brick(256,128));
 		list.add(new Brick(320,128));
+		list.add(new Spikes(320 ,194 ));
+		list.add(new Spikes(256 ,194 ));
 
 
 
@@ -71,8 +74,17 @@ public class MyGdxGame extends ApplicationAdapter {
 		for (GameObject t : list){
 			switch (player.hits(t.getHitBox())){
 				case 1:
-					player.action(1,0,t.getHitBox().y +t.getHitBox().height);
+					switch (t.hitAction(1)){
+						case 1 :
+						player.action(1,0,t.getHitBox().y +t.getHitBox().height);
+						break;
+						case 2 :
+							player.setPosition(0, 400);
+							break;
+
+					}
 					break;
+
 				case 2:
 					player.action(2,t.getHitBox().x + t.getHitBox().width+1,0);
 					break;
