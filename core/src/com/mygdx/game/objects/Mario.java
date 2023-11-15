@@ -7,13 +7,17 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Mario extends GameObject {
-    Rectangle bottom, left, right, top;
+    Rectangle bottom, left, right, top, full;
     Sprite sprite;
     Texture texture;
     int action;
     float velocityY;
     public Mario(){
-        bottom = new Rectangle(0F, 0F, 128F, 128F);
+        full = new Rectangle(0F, 0F, 128F, 128F);
+        bottom = new Rectangle(0,0,128,16);
+        top = new Rectangle(0,112,128,16);
+        right = new Rectangle(64,16,64,96);
+        left = new Rectangle(0,16,64,96);
 
         texture = new Texture(Gdx.files.internal("sprite/Safeimagekit-resized-img.png"));
         sprite = new Sprite(texture, 0, 0, 128, 128);
@@ -23,18 +27,31 @@ public class Mario extends GameObject {
 
     // Gérer les collisions
     public int hits(Rectangle r){
-        if(bottom.overlaps(r)){
+        if (left.overlaps(r)){
+            return 2;
+        }
+        if (right.overlaps(r)){
+            return 3;
+        }
+        if (bottom.overlaps(r)){
             return 1;
+        }
+        if (top.overlaps(r)){
+            return 4;
         }
         return -1;
     }
 
     // Comportements du personnage
     public void action(int type, float x , float y ) {
-    if (type ==1){
-        velocityY = 0;
-        setPosition(bottom.x,y);
-    }
+        if (type == 1 || type == 4) {
+            velocityY = 0;
+            setPosition(bottom.x, y);
+        }
+        if (type == 2 || type == 3) {
+            velocityY = 0;
+            setPosition(x, bottom.y);
+        }
     }
 
     // Contrôler les déplacements
@@ -45,8 +62,21 @@ public class Mario extends GameObject {
     }
 
     public void setPosition(float x, float y){
+        full.x = x;
+        full.y = y;
+
         bottom.x = x;
         bottom.y = y;
+
+        left.x = x;
+        left.y = y + 16;
+
+        right.x = x + 64;
+        right.y = y + 16;
+
+        top.x = x;
+        top.y = y + 112;
+
         sprite.setPosition(x,y);
     }
 
@@ -71,6 +101,6 @@ public class Mario extends GameObject {
 
     @Override
     public Rectangle getHitBox() {
-        return bottom;
+        return full;
     }
 }
