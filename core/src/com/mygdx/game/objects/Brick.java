@@ -1,9 +1,26 @@
 package com.mygdx.game.objects;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Brick extends  GameObject{
+
+    Rectangle hitBox;
+    Sprite sprite;
+    Texture texture;
+
+
+public  Brick (int x, int y){
+    hitBox = new Rectangle(x ,y , 64 , 64);
+    texture = new Texture(Gdx.files.internal("sprite/block.png"));
+    sprite = new Sprite(texture,0,0,64, 64);
+    setPosition(x ,y);
+
+}
+
     @Override
     public int hits(Rectangle r) {
         return 0;
@@ -22,6 +39,11 @@ public class Brick extends  GameObject{
     @Override
     public void setPosition(float x, float y) {
 
+    hitBox.x = x;
+    hitBox.y = y;
+    sprite.setPosition(x ,y);
+
+
     }
 
     @Override
@@ -36,6 +58,7 @@ public class Brick extends  GameObject{
 
     @Override
     public void draw(SpriteBatch batch) {
+    sprite.draw(batch);
 
     }
 
@@ -46,6 +69,6 @@ public class Brick extends  GameObject{
 
     @Override
     public Rectangle getHitBox() {
-        return null;
+        return hitBox;
     }
 }
