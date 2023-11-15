@@ -58,6 +58,7 @@ public  Brick (int x, int y){
 
     @Override
     public void draw(SpriteBatch batch) {
+    sprite.setPosition(hitBox.x , hitBox.y);
     sprite.draw(batch);
 
     }

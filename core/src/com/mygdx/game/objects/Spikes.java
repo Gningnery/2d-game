@@ -53,6 +53,7 @@ public class Spikes extends  GameObject {
 
     @Override
     public void draw(SpriteBatch batch) {
+        sprite.setPosition(hitBox.x, hitBox.y);
     sprite.draw(batch);
     }
 
