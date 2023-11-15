@@ -97,7 +97,7 @@ public class Mario extends GameObject {
 
 
     public  void jump(){
-        velocityY = 20;
+        velocityY = 10;
     }
 
     @Override

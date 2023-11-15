@@ -19,6 +19,10 @@ Block 128 0
 Block 192 0
 Block 256 0
 Block 320 0
+Coin 200 100
+Coin 300 100
+Coin 400 200
+Coin 500 150
 Block 768 0
 Block 832 0
 Block 896 0
@@ -40,8 +44,4 @@ Block 1856 0
 Block 1920 0
 Block 1984 0
 Block 2048 0
-Coin 200 100
-Coin 300 100
-Coin 400 200
-Coin 500 300
-Pole 1980 0
+Pole 2112 0
