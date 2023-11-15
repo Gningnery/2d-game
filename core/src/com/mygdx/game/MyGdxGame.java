@@ -8,12 +8,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.characters.Mario;
 
 public class MyGdxGame extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture texture;
 	private Sprite sprite;
 	private OrthographicCamera camera;
+	private Mario player;
 
 
 
@@ -23,11 +25,13 @@ public class MyGdxGame extends ApplicationAdapter {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false ,800 ,480);
 		batch =new SpriteBatch();
-		texture = new Texture(Gdx.files.internal("sprite/Safeimagekit-resized-img.png"));
 
+		player = new Mario();
+		player.setPosition(200,100);
 
-		sprite = new Sprite(texture,0,0,128,128);
-		sprite.setPosition(100,50);
+//		texture = new Texture(Gdx.files.internal("sprite/Safeimagekit-resized-img.png"));
+//		sprite = new Sprite(texture,0,0,128,128);
+//		sprite.setPosition(100,50);
 
 	}
 
@@ -37,7 +41,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		sprite.draw(batch);
+		player.draw(batch);
 		batch.end();
 	}
 	
@@ -45,7 +49,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void dispose () {
 
 		batch.dispose();
-		texture.dispose();
+//		texture.dispose();
 
 	}
 }
