@@ -2,13 +2,14 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.game.characters.Mario;
+import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.game.objects.Mario;
 
 public class MyGdxGame extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -43,6 +44,20 @@ public class MyGdxGame extends ApplicationAdapter {
 		batch.begin();
 		player.draw(batch);
 		batch.end();
+
+		//updates
+		player.update(Gdx.graphics.getDeltaTime());
+		Rectangle temp = new Rectangle(0,0,800,10);
+		if (player.hits(temp)!= -1){
+			player.action(1,0,10);
+		}
+
+
+
+		//controls
+		if (Gdx.input.isKeyPressed((Input.Keys.SPACE))){
+			player.jump();
+		}
 	}
 	
 	@Override
