@@ -42,6 +42,9 @@ public class MyGdxGame extends ApplicationAdapter {
 		list.add(new Brick(128,0));
 		list.add(new Brick(256,128));
 		list.add(new Brick(320,128));
+		list.add(new Brick(448,300));
+		list.add(new Brick(520,200));
+		list.add(new Brick(584,200));
 		list.add(new Spikes(320 ,194 ));
 		list.add(new Spikes(256 ,194 ));
 
@@ -81,10 +84,8 @@ public class MyGdxGame extends ApplicationAdapter {
 						case 2 :
 							player.setPosition(0, 400);
 							break;
-
 					}
 					break;
-
 				case 2:
 					player.action(2,t.getHitBox().x + t.getHitBox().width+1,0);
 					break;
@@ -96,6 +97,8 @@ public class MyGdxGame extends ApplicationAdapter {
 					break;
 			}
 		}
+
+	updateCamera();
 
 		//controls
 		if (Gdx.input.isKeyPressed((Input.Keys.SPACE))){
@@ -115,5 +118,9 @@ public class MyGdxGame extends ApplicationAdapter {
 		batch.dispose();
 //		texture.dispose();
 
+	}
+	public void updateCamera(){
+		camera.position.x = player.getHitBox().x;
+		camera.update();
 	}
 }
