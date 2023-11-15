@@ -51,11 +51,13 @@ public class Mario extends GameObject {
     }
 
     public void moveLeft(float delta){
-
+        bottom.x -= (400 * delta);
+        sprite.setPosition(bottom.x, bottom.y);
     }
 
     public void moveRight(float delta){
-
+        bottom.x += (400 * delta);
+        sprite.setPosition(bottom.x, bottom.y);
     }
 
     public void draw(SpriteBatch batch){

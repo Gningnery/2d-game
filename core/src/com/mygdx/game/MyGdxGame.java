@@ -52,11 +52,15 @@ public class MyGdxGame extends ApplicationAdapter {
 			player.action(1,0,10);
 		}
 
-
-
 		//controls
 		if (Gdx.input.isKeyPressed((Input.Keys.SPACE))){
 			player.jump();
+		}
+		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+			player.moveLeft(Gdx.graphics.getDeltaTime());
+		}
+		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+			player.moveRight(Gdx.graphics.getDeltaTime());
 		}
 	}
 	
