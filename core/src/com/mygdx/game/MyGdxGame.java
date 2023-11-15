@@ -25,6 +25,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		batch =new SpriteBatch();
 		texture = new Texture(Gdx.files.internal("sprite/Safeimagekit-resized-img.png"));
 
+
 		sprite = new Sprite(texture,0,0,128,128);
 		sprite.setPosition(100,50);
 
